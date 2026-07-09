@@ -15,7 +15,7 @@
 		<shiro.version>1.13.0</shiro.version>
 		<shiro-biz.version>2.0.0.RELEASE</shiro-biz.version>
 		<jwt-issuer.version>1.1.8.RELEASE</jwt-issuer.version>
-		<spring.version>5.3.27</spring.version>
+		<spring.version>6.1.21</spring.version>
 	</properties>
 
 	<dependencies>
@@ -78,7 +78,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>31.1-jre</version>
+			<version>32.0.0-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
