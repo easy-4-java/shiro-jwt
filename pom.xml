@@ -13,8 +13,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
 		<shiro.version>1.13.0</shiro.version>
-		<shiro-biz.version>2.0.0.RELEASE</shiro-biz.version>
-		<jwt-issuer.version>1.1.8.RELEASE</jwt-issuer.version>
+		<shiro-biz.version>2.0.x.20260630-SNAPSHOT</shiro-biz.version>
+		<jwt-issuer.version>2.0.x.20260630-SNAPSHOT</jwt-issuer.version>
 		<spring.version>5.3.27</spring.version>
 	</properties>
 
