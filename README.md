@@ -1,6 +1,6 @@
 # shiro-jwt-extension
 
-![Java](https://img.shields.io/badge/Java-17-orange) ![License](https://img.shields.io/badge/License-Apache%202.0-blue)
+[English](./README.md) | [简体中文](./README.zh-CN.md)
 
 JWT authentication and authorization extension for Apache Shiro, built on `shiro-biz` and `jwt-issuer-api` (easy4j). It provides JWT-aware filters (header `X-Authorization` or `token` parameter), stateful/stateless realms, principal repositories, credentials matching and i18n messages for Shiro-based applications.
 
