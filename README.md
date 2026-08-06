@@ -2,6 +2,8 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/shiro-jwt-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 JWT authentication and authorization extension for Apache Shiro, built on `shiro-biz` and `jwt-issuer-api` (easy4j). It provides JWT-aware filters (header `X-Authorization` or `token` parameter), stateful/stateless realms, principal repositories, credentials matching and i18n messages for Shiro-based applications.
 
 ## Table of Contents

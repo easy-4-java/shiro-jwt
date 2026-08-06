@@ -2,6 +2,8 @@
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
+[![Java](https://img.shields.io/badge/Java-21-orange)](https://github.com/easy-4-java/shiro-jwt-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+
 Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issuer-api`（easy4j）之上。为基于 Shiro 的应用提供 JWT 感知的过滤器（请求头 `X-Authorization` 或 `token` 参数）、有状态/无状态 Realm、主体仓库、凭证匹配与 i18n 消息。
 
 ## 目录
