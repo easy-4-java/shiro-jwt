@@ -1,10 +1,10 @@
-# shiro-jwt-extension
+# shiro-jwt
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-8-orange)](https://github.com/easy-4-java/shiro-jwt-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Java](https://img.shields.io/badge/Java-8-orange)](https://github.com/easy-4-java/shiro-jwt) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issuer-api`（easy4j）之上。为基于 Shiro 的应用提供 JWT 感知的过滤器（请求头 `X-Authorization` 或 `token` 参数）、有状态/无状态 Realm、主体仓库、凭证匹配与 i18n 消息。
+Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-extension-spring` 与 `jwt-issuer-api`（easy4j）之上。为基于 Shiro 的应用提供 JWT 感知的过滤器（请求头 `X-Authorization` 或 `token` 参数）、有状态/无状态 Realm、主体仓库、凭证匹配与 i18n 消息。
 
 ## 目录
 
@@ -24,9 +24,9 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issu
 
 **是什么**
 
-`shiro-jwt-extension` 将 JWT 登录引入 Shiro Web 应用：
+`shiro-jwt` 将 JWT 登录引入 Shiro Web 应用：
 
-- `JwtAuthenticatingFilter`（继承 `shiro-biz` 的 `TrustableRestAuthenticatingFilter`）从 `X-Authorization` 请求头或 `token` 请求参数中提取 JWT。
+- `JwtAuthenticatingFilter`（继承 `shiro-extension-spring` 的 `TrustableRestAuthenticatingFilter`）从 `X-Authorization` 请求头或 `token` 请求参数中提取 JWT。
 - `JwtStatefulAuthorizingRealm` / `JwtStatelessAuthorizingRealm` 分别覆盖基于会话与无状态的 JWT 认证。
 - `JwtPayloadRepository` / `JwtPrincipalRepository` / `JwtPayloadPrincipal` 将 JWT 载荷（来自 `jwt-issuer-api`）映射到 Shiro 主体模型。
 - `JwtAuthorizationFilter` 与 `JwtWithinExpiryFilter` 负责授权与有效期校验。
@@ -62,7 +62,7 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issu
 | i18n 消息 | 可用 | 经 `ShiroJwtMessageSource` 提供 `messages.properties`（+`en_US`、`zh_CN`）。 |
 | 工具类 | 可用 | `SubjectJwtUtils`、`JSONResult`、`StringUtils`（位于 `org.apache.shiro.spring.boot.utils`）。 |
 
-> 状态以 `feature/1.0.x` 分支上的 `1.0.x.20260630-SNAPSHOT` 为准。
+> 状态以 `feature/3.0.x` 分支上的 `1.0.x.20260630-SNAPSHOT` 为准。
 
 ## 3. Requirements & Compatibility
 
@@ -70,8 +70,8 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issu
 | :--- | :--- |
 | JDK | 8+ |
 | Maven | 3.0+（内置 Maven Wrapper 3.5.0） |
-| Apache Shiro | 1.13.0（`shiro-core`、`shiro-web`） |
-| easy4j 依赖 | `shiro-biz`、`jwt-issuer-api`（均为 `1.0.x.20260630-SNAPSHOT`） |
+| Apache Shiro | 2.2.1（`shiro-core`、`shiro-web`） |
+| easy4j 依赖 | `shiro-extension-spring`、`jwt-issuer-api`（均为 `1.0.x.20260630-SNAPSHOT`） |
 | JSON | fastjson 2.0.62、jackson-databind 2.17.2 |
 | 其他 | spring-context / spring-web、commons-lang3、guava、javax.servlet-api 4.0.1 |
 
@@ -104,28 +104,23 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issu
         +-- 处理器 --> ShiroJwtMessageSource（i18n）
 ```
 
-本项目为**单模块**工程（packaging 为 `jar`），类位于 `org.apache.shiro.spring.boot.jwt`（另有 `org.apache.shiro.spring.boot.utils`）：
+本项目是包含两个模块的 Maven 聚合工程。为保持源码兼容，现有 `org.apache.shiro.spring.boot.jwt` 与 `org.apache.shiro.spring.boot.utils` 包名不变：
 
-| 包 | 职责 |
+| 模块 | 职责 |
 | :--- | :--- |
-| `jwt` | 主体/载荷仓库、消息源 |
-| `jwt.authc`（+ `jwt.authc.credential`） | JWT 认证过滤器、处理器、Subject 工厂、凭证匹配器 |
-| `jwt.authz` | 授权过滤器、有效期过滤器、失败处理器 |
-| `jwt.realm` | 有状态与无状态 JWT Realm |
-| `jwt.token` | `JwtAuthenticationToken`、`JwtAuthorizationToken` |
-| `jwt.exception` | JWT 专属认证异常 |
-| `utils` | `SubjectJwtUtils`、`JSONResult`、`StringUtils` |
+| `shiro-jwt-core` | JWT Token、凭证匹配器、认证异常与不依赖 Spring API 的工具类。 |
+| `shiro-jwt-spring` | 载荷/主体仓库、Spring Web 过滤器、处理器、Realm、消息源和 `SubjectJwtUtils`；单向依赖 core。 |
 
 ## 5. Installation
 
-该构件尚未发布到 Maven Central。请从项目配置的制品仓库（阿里云制品仓库）获取，或从源码本地安装；`feature/1.0.x` 分支当前使用的快照版本为 `1.0.x.20260630-SNAPSHOT`。
+该构件尚未发布到 Maven Central。请从项目配置的制品仓库（阿里云制品仓库）获取，或从源码本地安装；`feature/3.0.x` 分支当前使用的快照版本为 `1.0.x.20260630-SNAPSHOT`。
 
 **Maven**
 
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>shiro-jwt-extension</artifactId>
+    <artifactId>shiro-jwt-spring</artifactId>
     <version>1.0.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
@@ -133,7 +128,7 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-biz` 与 `jwt-issu
 **Gradle**
 
 ```groovy
-implementation 'io.github.easy4j:shiro-jwt-extension:1.0.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:shiro-jwt-spring:1.0.x.20260630-SNAPSHOT'
 ```
 
 ## 6. Quick Start
@@ -206,6 +201,6 @@ filter.setLoginUrl("/login/jwt");
 
 ## 11. Contributing & License
 
-欢迎参与贡献——请在 [GitHub 仓库](https://github.com/easy-4-java/shiro-jwt-extension) 提交 Issue 或 Pull Request。
+欢迎参与贡献——请在 [GitHub 仓库](https://github.com/easy-4-java/shiro-jwt) 提交 Issue 或 Pull Request。
 
 本项目基于 **Apache License 2.0** 开源。详见 [LICENSE](LICENSE)。
