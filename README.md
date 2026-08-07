@@ -1,10 +1,10 @@
-# shiro-jwt-extension
+# shiro-jwt
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
-[![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/shiro-jwt-extension) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
+[![Java](https://img.shields.io/badge/Java-17-orange)](https://github.com/easy-4-java/shiro-jwt) [![License](https://img.shields.io/badge/license-Apache%202.0-green)](https://www.apache.org/licenses/LICENSE-2.0.txt)
 
-JWT authentication and authorization extension for Apache Shiro, built on `shiro-biz` and `jwt-issuer-api` (easy4j). It provides JWT-aware filters (header `X-Authorization` or `token` parameter), stateful/stateless realms, principal repositories, credentials matching and i18n messages for Shiro-based applications.
+JWT authentication and authorization extension for Apache Shiro, built on `shiro-extension-spring` and `jwt-issuer-api` (easy4j). It provides JWT-aware filters (header `X-Authorization` or `token` parameter), stateful/stateless realms, principal repositories, credentials matching and i18n messages for Shiro-based applications.
 
 ## Table of Contents
 
@@ -24,9 +24,9 @@ JWT authentication and authorization extension for Apache Shiro, built on `shiro
 
 **What it is**
 
-`shiro-jwt-extension` brings JWT login to Shiro web applications:
+`shiro-jwt` brings JWT login to Shiro web applications:
 
-- `JwtAuthenticatingFilter` (extends `TrustableRestAuthenticatingFilter` from `shiro-biz`) accepts JWTs from the `X-Authorization` header or the `token` request parameter.
+- `JwtAuthenticatingFilter` (extends `TrustableRestAuthenticatingFilter` from `shiro-extension-spring`) accepts JWTs from the `X-Authorization` header or the `token` request parameter.
 - `JwtStatefulAuthorizingRealm` / `JwtStatelessAuthorizingRealm` cover session-based and stateless JWT authentication.
 - `JwtPayloadRepository` / `JwtPrincipalRepository` / `JwtPayloadPrincipal` map JWT payloads (from `jwt-issuer-api`) onto the Shiro principal model.
 - `JwtAuthorizationFilter` and `JwtWithinExpiryFilter` enforce authorization and expiry checks.
@@ -62,7 +62,7 @@ JWT authentication and authorization extension for Apache Shiro, built on `shiro
 | i18n messages | Available | `messages.properties` (+ `en_US`, `zh_CN`) via `ShiroJwtMessageSource`. |
 | Utilities | Available | `SubjectJwtUtils`, `JSONResult`, `StringUtils` (under `org.apache.shiro.spring.boot.utils`). |
 
-> Status is reported as of `2.0.x.x.20260630-SNAPSHOT` on the `feature/2.0.x` branch.
+> Status is reported as of `2.0.x.20260630-SNAPSHOT` on the `feature/3.0.x` branch.
 
 ## 3. Requirements & Compatibility
 
@@ -70,8 +70,8 @@ JWT authentication and authorization extension for Apache Shiro, built on `shiro
 | :--- | :--- |
 | JDK | 17+ |
 | Maven | 3.0+ (Maven Wrapper 3.5.0 bundled) |
-| Apache Shiro | 1.13.0 (`shiro-core`, `shiro-web`) |
-| easy4j dependencies | `shiro-biz`, `jwt-issuer-api` (both `2.0.x.x.20260630-SNAPSHOT`) |
+| Apache Shiro | 2.2.1 (`shiro-core`, `shiro-web`) |
+| easy4j dependencies | `shiro-extension-spring`, `jwt-issuer-api` (both `2.0.x.20260630-SNAPSHOT`) |
 | JSON | fastjson 2.0.62, jackson-databind 2.17.2 |
 | Other | spring-context / spring-web, commons-lang3, guava, javax.servlet-api 4.0.1 |
 
@@ -104,36 +104,31 @@ JWT authentication and authorization extension for Apache Shiro, built on `shiro
         +-- handlers --> ShiroJwtMessageSource (i18n)
 ```
 
-This is a **single-module** project (packaging `jar`), classes under `org.apache.shiro.spring.boot.jwt` (plus `org.apache.shiro.spring.boot.utils`):
+This is a two-module Maven aggregator. Existing Java package names under `org.apache.shiro.spring.boot.jwt` and `org.apache.shiro.spring.boot.utils` remain unchanged for source compatibility:
 
-| Package | Role |
+| Module | Role |
 | :--- | :--- |
-| `jwt` | Principal/payload repositories, message source |
-| `jwt.authc` (+ `jwt.authc.credential`) | JWT authenticating filter, handlers, subject factory, credentials matcher |
-| `jwt.authz` | Authorization filter, within-expiry filter, failure handler |
-| `jwt.realm` | Stateful and stateless JWT realms |
-| `jwt.token` | `JwtAuthenticationToken`, `JwtAuthorizationToken` |
-| `jwt.exception` | JWT-specific authentication exceptions |
-| `utils` | `SubjectJwtUtils`, `JSONResult`, `StringUtils` |
+| `shiro-jwt-core` | JWT tokens, credentials matcher, authentication exceptions and framework-neutral utilities; no Spring API dependency. |
+| `shiro-jwt-spring` | Payload/principal repositories, Spring Web filters, handlers, realms, message source and `SubjectJwtUtils`; depends on core. |
 
 ## 5. Installation
 
-The artifact is not yet published to Maven Central. Resolve it from the project's configured artifact repository (Aliyun Packages) or install it locally from source; the snapshot version currently used on the `feature/2.0.x` branch is `2.0.x.x.20260630-SNAPSHOT`.
+The artifact is not yet published to Maven Central. Resolve it from the project's configured artifact repository (Aliyun Packages) or install it locally from source; the snapshot version currently used on the `feature/3.0.x` branch is `2.0.x.20260630-SNAPSHOT`.
 
 **Maven**
 
 ```xml
 <dependency>
     <groupId>io.github.easy4j</groupId>
-    <artifactId>shiro-jwt-extension</artifactId>
-    <version>2.0.x.x.20260630-SNAPSHOT</version>
+    <artifactId>shiro-jwt-spring</artifactId>
+    <version>2.0.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
 **Gradle**
 
 ```groovy
-implementation 'io.github.easy4j:shiro-jwt-extension:2.0.x.x.20260630-SNAPSHOT'
+implementation 'io.github.easy4j:shiro-jwt-spring:2.0.x.20260630-SNAPSHOT'
 ```
 
 ## 6. Quick Start
@@ -206,6 +201,6 @@ Maintenance strategy: the 1.0.x line keeps JDK 8 compatibility for legacy deploy
 
 ## 11. Contributing & License
 
-Contributions are welcome — please open an issue or a pull request on the [GitHub repository](https://github.com/easy-4-java/shiro-jwt-extension).
+Contributions are welcome — please open an issue or a pull request on the [GitHub repository](https://github.com/easy-4-java/shiro-jwt).
 
 This project is licensed under the **Apache License 2.0**. See [LICENSE](LICENSE) for details.
