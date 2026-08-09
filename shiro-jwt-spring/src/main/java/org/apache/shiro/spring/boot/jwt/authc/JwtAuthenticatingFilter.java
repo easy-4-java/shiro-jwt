@@ -30,6 +30,13 @@ import org.springframework.http.MediaType;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Servlet filter that intercepts HTTP requests and extracts JWT tokens from the
+ * authorization header, query parameter, or cookie. Supports stateless session
+ * management and optional JWT expiry verification.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtAuthenticatingFilter extends TrustableRestAuthenticatingFilter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticatingFilter.class);

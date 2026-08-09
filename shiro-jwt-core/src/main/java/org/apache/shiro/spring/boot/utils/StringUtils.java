@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+/**
+ * String utility methods for tokenizing configuration location paths.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class StringUtils {
 
 	/**

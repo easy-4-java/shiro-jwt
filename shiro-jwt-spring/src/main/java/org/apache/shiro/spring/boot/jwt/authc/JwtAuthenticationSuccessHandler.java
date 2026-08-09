@@ -25,6 +25,12 @@ import org.springframework.http.MediaType;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Handler invoked upon successful JWT authentication. Issues a new JWT via the
+ * configured {@link JwtPayloadRepository} and returns the token map as a JSON response.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHandler, Ordered {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationSuccessHandler.class);

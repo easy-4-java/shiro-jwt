@@ -5,6 +5,12 @@ import javax.servlet.ServletResponse;
 
 import org.apache.shiro.subject.Subject;
 
+/**
+ * JWT authorization filter that always grants access on successful authentication,
+ * used when JWT expiry verification is handled separately.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtWithinExpiryFilter extends JwtAuthorizationFilter {
 
 	@Override

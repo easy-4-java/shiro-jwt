@@ -17,6 +17,11 @@ package org.apache.shiro.spring.boot.utils;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Utility class for building JSON result strings with status, message, and result fields.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JSONResult{
 	
     public static String fillResultString(Integer status, String message, Object result){

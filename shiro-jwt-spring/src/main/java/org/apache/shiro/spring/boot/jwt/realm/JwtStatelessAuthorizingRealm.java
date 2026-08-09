@@ -15,6 +15,12 @@ import org.springframework.util.CollectionUtils;
 import io.github.easy4j.jwt.JwtPayload.RolePair;
 import com.google.common.collect.Sets;
 
+/**
+ * Stateless authorizing realm that accepts {@link JwtAuthorizationToken} for authentication
+ * and extracts roles and permissions from the JWT payload principal.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtStatelessAuthorizingRealm extends AbstractAuthorizingRealm {
 
 	@Override

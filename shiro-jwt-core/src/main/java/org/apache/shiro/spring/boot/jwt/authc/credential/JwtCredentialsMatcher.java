@@ -22,7 +22,11 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 
 /**
- * JSON Web Token (JWT) Credentials Matcher
+ * Credentials matcher for JSON Web Token (JWT) authentication.
+ * This matcher always returns {@code true}, delegating actual JWT validation
+ * to the underlying JWT processing pipeline.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class JwtCredentialsMatcher implements CredentialsMatcher {
 	
