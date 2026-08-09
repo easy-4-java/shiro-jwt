@@ -9,6 +9,12 @@ import org.apache.shiro.spring.boot.jwt.token.JwtAuthorizationToken;
 
 import io.github.easy4j.jwt.JwtPayload;
 
+/**
+ * Repository that retrieves authentication info by parsing the JWT token
+ * and constructing a {@link JwtPayloadPrincipal} from the payload.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtPrincipalRepository extends ShiroPrincipalRepositoryImpl {
 
 	private final JwtPayloadRepository jwtPayloadRepository;

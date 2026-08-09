@@ -18,7 +18,8 @@ package org.apache.shiro.spring.boot.jwt.exception;
 import org.apache.shiro.authc.AuthenticationException;
 
 /**
- * TODO
+ * Exception thrown when a JSON Web Token (JWT) has expired.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
  */
 @SuppressWarnings("serial")

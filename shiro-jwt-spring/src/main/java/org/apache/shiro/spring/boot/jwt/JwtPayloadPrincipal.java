@@ -4,6 +4,12 @@ import org.apache.shiro.biz.authz.principal.ShiroPrincipal;
 
 import io.github.easy4j.jwt.JwtPayload;
 
+/**
+ * Principal that wraps a {@link JwtPayload}, extending {@link ShiroPrincipal}
+ * with JWT-specific payload data.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 @SuppressWarnings("serial")
 public class JwtPayloadPrincipal extends ShiroPrincipal {
 
