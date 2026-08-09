@@ -29,6 +29,12 @@ import org.springframework.http.MediaType;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Authorization filter that extracts JWT tokens from the request (header, parameter, or cookie),
+ * performs login via the Shiro subject, and optionally verifies JWT expiry.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtAuthorizationFilter extends AbstracAuthorizationFilter {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JwtAuthorizationFilter.class);

@@ -2,6 +2,12 @@ package org.apache.shiro.spring.boot.jwt.token;
 
 import org.apache.shiro.biz.authc.token.DefaultAuthenticationToken;
 
+/**
+ * Authentication token for JWT-based login, carrying username/password credentials
+ * along with optional captcha, remember-me flag, and client host information.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 @SuppressWarnings("serial")
 public class JwtAuthenticationToken extends DefaultAuthenticationToken {
 

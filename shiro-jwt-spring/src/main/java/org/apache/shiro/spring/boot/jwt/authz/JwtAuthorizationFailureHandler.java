@@ -27,6 +27,12 @@ import org.springframework.http.MediaType;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Handler invoked when JWT authorization fails. Maps specific JWT exception types
+ * (expired, incorrect, invalid, not-obtained) to appropriate HTTP error responses.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtAuthorizationFailureHandler implements AuthorizationFailureHandler {
 
 	private static final Logger LOG = LoggerFactory.getLogger(JwtAuthenticationFailureHandler.class);

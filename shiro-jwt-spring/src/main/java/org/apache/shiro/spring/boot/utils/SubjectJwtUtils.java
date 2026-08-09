@@ -12,6 +12,11 @@ import org.apache.shiro.biz.utils.SubjectUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.util.CollectionUtils;
 
+/**
+ * Utility class for building JWT token response maps from the authenticated subject.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class SubjectJwtUtils extends SubjectUtils {
 
 	private static final String EMPTY = "null";

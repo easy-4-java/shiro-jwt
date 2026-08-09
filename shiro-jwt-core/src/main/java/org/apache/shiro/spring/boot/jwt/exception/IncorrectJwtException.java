@@ -2,6 +2,11 @@ package org.apache.shiro.spring.boot.jwt.exception;
 
 import org.apache.shiro.authc.AuthenticationException;
 
+/**
+ * Exception thrown when a JSON Web Token (JWT) is incorrect or malformed.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 @SuppressWarnings("serial")
 public class IncorrectJwtException extends AuthenticationException {
 	

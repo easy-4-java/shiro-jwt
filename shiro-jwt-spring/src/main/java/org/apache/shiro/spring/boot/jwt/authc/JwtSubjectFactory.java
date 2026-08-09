@@ -8,6 +8,12 @@ import org.apache.shiro.spring.boot.jwt.token.JwtAuthorizationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.SubjectContext;
 
+/**
+ * Subject factory that disables session creation for stateless JWT authorization tokens
+ * when the remember-me flag is set, ensuring proper stateless authentication semantics.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public class JwtSubjectFactory extends SessionCreationEnabledSubjectFactory {
 
 	public JwtSubjectFactory(boolean sessionCreationEnabled) {

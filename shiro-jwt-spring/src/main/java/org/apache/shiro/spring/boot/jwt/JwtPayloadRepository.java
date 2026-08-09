@@ -10,6 +10,12 @@ import org.apache.shiro.subject.Subject;
 
 import io.github.easy4j.jwt.JwtPayload;
 
+/**
+ * Repository interface for issuing, verifying, and parsing JSON Web Tokens (JWT).
+ * Provides default (no-op) implementations for all methods.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ */
 public interface JwtPayloadRepository {
 
 	default String issueJwt(AuthenticationToken token, Subject subject) {
