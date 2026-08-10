@@ -41,27 +41,28 @@
     </developers>
 
     <properties>
-        <revision>2.0.x.20260630-SNAPSHOT</revision>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
-        <shiro.version>2.2.1</shiro.version>
-        <easy4j-shiro-extension.version>2.0.x.20260630-SNAPSHOT</easy4j-shiro-extension.version>
-        <easy4j-jwt-issuer.version>2.0.x.20260630-SNAPSHOT</easy4j-jwt-issuer.version>
-        <spring.version>5.3.30</spring.version>
-        <fastjson.version>2.0.64</fastjson.version>
-        <jackson.version>2.17.2</jackson.version>
-        <commons-lang3.version>3.20.0</commons-lang3.version>
-        <guava.version>33.6.0-jre</guava.version>
-        <javax-servlet-api.version>4.0.1</javax-servlet-api.version>
-        <slf4j.version>2.0.18</slf4j.version>
-        <lombok.version>1.18.46</lombok.version>
-
-        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
-        <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
-        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-        <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
-        <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
-        <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
+            <java.version>17</java.version>
+            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+            <!-- Dependency versions -->
+            <commons-lang3.version>3.20.0</commons-lang3.version>
+            <easy4j-jwt-issuer.version>2.0.x.20260630-SNAPSHOT</easy4j-jwt-issuer.version>
+            <easy4j-shiro-extension.version>2.0.x.20260630-SNAPSHOT</easy4j-shiro-extension.version>
+            <fastjson.version>2.0.64</fastjson.version>
+            <guava.version>33.6.0-jre</guava.version>
+            <jackson.version>2.17.2</jackson.version>
+            <javax-servlet-api.version>4.0.1</javax-servlet-api.version>
+            <lombok.version>1.18.46</lombok.version>
+            <revision>2.0.x.20260630-SNAPSHOT</revision>
+            <shiro.version>2.2.1</shiro.version>
+            <slf4j.version>2.0.18</slf4j.version>
+            <spring.version>5.3.30</spring.version>
+            <!-- Maven Plugin versions -->
+            <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
+            <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+            <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
+            <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
+            <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
+            <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
     </properties>
 
     <dependencyManagement>
