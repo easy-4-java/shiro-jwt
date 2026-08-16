@@ -50,7 +50,7 @@
             <easy4j-shiro-extension.version>2.0.x.20260630-SNAPSHOT</easy4j-shiro-extension.version>
             <fastjson.version>2.0.64</fastjson.version>
             <guava.version>33.6.0-jre</guava.version>
-            <jackson.version>2.17.2</jackson.version>
+            <jackson-bom.version>2.22.1</jackson-bom.version>
             <javax-servlet-api.version>4.0.1</javax-servlet-api.version>
             <lombok.version>1.18.46</lombok.version>
             <revision>2.0.x.20260630-SNAPSHOT</revision>
@@ -68,6 +68,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>${jackson-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <dependency>
                 <groupId>io.github.easy4j</groupId>
                 <artifactId>shiro-extension-core</artifactId>
@@ -102,11 +109,6 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
