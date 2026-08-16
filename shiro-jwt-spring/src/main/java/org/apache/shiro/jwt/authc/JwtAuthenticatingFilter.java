@@ -28,7 +28,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * Servlet filter that intercepts HTTP requests and extracts JWT tokens from the
@@ -49,7 +52,7 @@ public class JwtAuthenticatingFilter extends TrustableRestAuthenticatingFilter {
 	private String authorizationCookieName = AUTHORIZATION_PARAM;
 	private JwtPayloadRepository jwtPayloadRepository;
 	private boolean checkExpiry = false;
-	private ObjectMapper objectMapper = new ObjectMapper();
+	private ObjectMapper objectMapper = new JsonMapper();
 
 	@Override
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
@@ -116,8 +119,8 @@ public class JwtAuthenticatingFilter extends TrustableRestAuthenticatingFilter {
 				}
 				return new JwtAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword(),
 						loginRequest.isRememberMe(), host);
-			} catch (IOException e) {
-				LOG.error(e.getMessage(), e);
+				} catch (IOException | JacksonException e) {
+					LOG.error(e.getMessage(), e);
 			}
 		}
 		return super.createToken(request, response);
