@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project {http://www.w3.org/2001/XMLSchema-instance}schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.easy4j</groupId>
     <artifactId>shiro-jwt</artifactId>
@@ -10,43 +7,38 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Apache Shiro JSON Web Token extensions</description>
     <url>https://github.com/easy-4-java/shiro-jwt</url>
-
     <modules>
         <module>shiro-jwt-core</module>
         <module>shiro-jwt-spring</module>
     </modules>
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
-
     <scm>
         <connection>scm:git:https://github.com/easy-4-java/shiro-jwt.git</connection>
         <developerConnection>scm:git:https://github.com/easy-4-java/shiro-jwt.git</developerConnection>
         <url>https://github.com/easy-4-java/shiro-jwt</url>
         <tag>HEAD</tag>
     </scm>
-
     <developers>
         <developer>
             <name>Loong Wan</name>
             <email>hiwepy@gmail.com</email>
             <url>https://github.com/loong10k</url>
-            <roles><role>developer</role></roles>
+            <roles>
+                <role>developer</role>
+            </roles>
             <timezone>+8</timezone>
         </developer>
     </developers>
-
     <properties>
         <java.version>21</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>3.0.x.20260630-SNAPSHOT</revision>
-
-        <!-- Dependency versions -->
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <easy4j-jwt-issuer.version>3.0.x.20260630-SNAPSHOT</easy4j-jwt-issuer.version>
         <easy4j-shiro-extension.version>3.0.x.20260630-SNAPSHOT</easy4j-shiro-extension.version>
@@ -58,8 +50,6 @@
         <shiro.version>2.2.1</shiro.version>
         <slf4j.version>2.0.18</slf4j.version>
         <spring.version>5.3.30</spring.version>
-
-        <!-- Maven Plugin versions -->
         <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>3.2.8</maven-gpg-plugin.version>
@@ -67,10 +57,8 @@
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
-            <!-- Jackson BOM (tools.jackson 3.x; annotations stay com.fasterxml 2.x) -->
             <dependency>
                 <groupId>tools.jackson</groupId>
                 <artifactId>jackson-bom</artifactId>
@@ -152,7 +140,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <build>
         <plugins>
             <plugin>
@@ -180,12 +167,16 @@
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
-                        <goals><goal>prepare-agent</goal></goals>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
-                        <goals><goal>report</goal></goals>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -196,13 +187,14 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <goals><goal>jar-no-fork</goal></goals>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
-
     <distributionManagement>
         <repository>
             <id>2624322-release-6F6h6R</id>
@@ -213,7 +205,6 @@
             <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
         </snapshotRepository>
     </distributionManagement>
-
     <profiles>
         <profile>
             <id>central</id>
@@ -230,7 +221,9 @@
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
-                                <goals><goal>jar</goal></goals>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
@@ -242,7 +235,9 @@
                             <execution>
                                 <id>sign-artifacts</id>
                                 <phase>verify</phase>
-                                <goals><goal>sign</goal></goals>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
