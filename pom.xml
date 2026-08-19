@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.easy4j</groupId>
     <artifactId>shiro-jwt</artifactId>
@@ -29,7 +28,9 @@
             <name>Loong Wan</name>
             <email>hiwepy@gmail.com</email>
             <url>https://github.com/loong10k</url>
-            <roles><role>developer</role></roles>
+            <roles>
+                <role>developer</role>
+            </roles>
             <timezone>+8</timezone>
         </developer>
     </developers>
@@ -40,7 +41,6 @@
         <maven.version>3.9.16</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <revision>1.0.x.20260630-SNAPSHOT</revision>
-
         <!-- ═══ Dependency versions（自然排序）═══ -->
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <easy4j-jwt-issuer.version>1.0.x.20260630-SNAPSHOT</easy4j-jwt-issuer.version>
@@ -53,7 +53,6 @@
         <shiro.version>1.13.0</shiro.version>
         <slf4j.version>2.0.18</slf4j.version>
         <spring.version>5.3.30</spring.version>
-
         <!-- ═══ Maven Plugin versions（自然排序）═══ -->
         <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
         <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
@@ -61,7 +60,6 @@
         <maven-jacoco-plugin.version>0.8.15</maven-jacoco-plugin.version>
         <maven-javadoc-plugin.version>3.11.2</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
-    
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -187,12 +185,16 @@
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
-                        <goals><goal>prepare-agent</goal></goals>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
                     </execution>
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
-                        <goals><goal>report</goal></goals>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -203,7 +205,9 @@
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <goals><goal>jar-no-fork</goal></goals>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -226,7 +230,9 @@
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
-                                <goals><goal>jar</goal></goals>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
@@ -238,7 +244,9 @@
                             <execution>
                                 <id>sign-artifacts</id>
                                 <phase>verify</phase>
-                                <goals><goal>sign</goal></goals>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
