@@ -50,6 +50,7 @@
         <javax-servlet-api.version>4.0.1</javax-servlet-api.version>
         <lombok.version>1.18.46</lombok.version>
         <shiro.version>2.2.1</shiro.version>
+        <!-- Dependency versions -->
         <slf4j.version>2.0.18</slf4j.version>
         <spring.version>5.3.30</spring.version>
         <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
