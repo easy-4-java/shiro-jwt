@@ -7,10 +7,6 @@
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Apache Shiro JSON Web Token extensions</description>
     <url>https://github.com/easy-4-java/shiro-jwt</url>
-    <modules>
-        <module>shiro-jwt-core</module>
-        <module>shiro-jwt-spring</module>
-    </modules>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -34,6 +30,10 @@
             <timezone>+8</timezone>
         </developer>
     </developers>
+    <modules>
+        <module>shiro-jwt-core</module>
+        <module>shiro-jwt-spring</module>
+    </modules>
     <properties>
         <!-- ═══ 第一段: 基础属性（自然排序）═══ -->
         <java.version>21</java.version>
@@ -142,6 +142,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <distributionManagement>
+        <repository>
+            <id>2624322-release-6F6h6R</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
+        </repository>
+        <snapshotRepository>
+            <id>2624322-snapshot-3EoOv3</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
@@ -195,16 +205,6 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>2624322-release-6F6h6R</id>
-            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
-        </repository>
-        <snapshotRepository>
-            <id>2624322-snapshot-3EoOv3</id>
-            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
-        </snapshotRepository>
-    </distributionManagement>
     <profiles>
         <profile>
             <id>central</id>
