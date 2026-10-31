@@ -26,8 +26,8 @@ class JwtAuthenticatingFilterRequestTest {
     @Test
     void readsJwtFromServletHeaderParameterAndCookie() {
         HttpServletRequest request = mock(HttpServletRequest.class);
-        when(request.getHeader("X-Authorization")).thenReturn("header-token", null, null);
-        when(request.getParameter("token")).thenReturn("param-token", null);
+        when(request.getHeader("X-Authorization")).thenReturn("header-token", (String) null, (String) null);
+        when(request.getParameter("token")).thenReturn("param-token", (String) null);
         when(request.getCookies()).thenReturn(new Cookie[] {new Cookie("token", "cookie-token")});
 
         assertThat(filter.getAccessToken(request)).isEqualTo("header-token");

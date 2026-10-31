@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.jwt.token.JwtAuthorizationToken;
+import org.apache.shiro.subject.Subject;
 import org.junit.jupiter.api.Test;
 
 class JwtAuthorizationFilterRequestTest {
@@ -24,8 +26,8 @@ class JwtAuthorizationFilterRequestTest {
     @Test
     void readsTokenFromHeaderThenParameterThenCookie() {
         HttpServletRequest request = mock(HttpServletRequest.class);
-        when(request.getHeader("X-Authorization")).thenReturn("header-token", null, null);
-        when(request.getParameter("token")).thenReturn("param-token", null);
+        when(request.getHeader("X-Authorization")).thenReturn("header-token", (String) null, (String) null);
+        when(request.getParameter("token")).thenReturn("param-token", (String) null);
         when(request.getCookies()).thenReturn(new Cookie[] {new Cookie("token", "cookie-token")});
 
         assertThat(filter.getAccessToken(request)).isEqualTo("header-token");
@@ -45,6 +47,24 @@ class JwtAuthorizationFilterRequestTest {
 
         assertThat(token.getToken()).isEqualTo("jwt-value");
         assertThat(token.getHost()).isEqualTo("192.0.2.10");
+    }
+
+    @Test
+    void validServletJwtLogsInSubjectAndAllowsRequest() throws Exception {
+        Subject subject = mock(Subject.class);
+        JwtAuthorizationFilter filterWithSubject = new JwtAuthorizationFilter() {
+            @Override
+            protected Subject getSubject(jakarta.servlet.ServletRequest request,
+                    jakarta.servlet.ServletResponse response) {
+                return subject;
+            }
+        };
+        HttpServletRequest request = mock(HttpServletRequest.class);
+        when(request.getHeader("X-Authorization")).thenReturn("jwt-value");
+        when(request.getRemoteAddr()).thenReturn("192.0.2.10");
+
+        assertThat(filterWithSubject.isAccessAllowed(request, mock(HttpServletResponse.class), null)).isTrue();
+        verify(subject).login(any(JwtAuthorizationToken.class));
     }
 
     @Test
