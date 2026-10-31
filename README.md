@@ -69,11 +69,11 @@ JWT authentication and authorization extension for Apache Shiro, built on `shiro
 | Item | Version |
 | :--- | :--- |
 | JDK | 21+ |
-| Maven | 3.0+ (Maven Wrapper 3.5.0 bundled) |
-| Apache Shiro | 2.2.1 (`shiro-core`, `shiro-web`) |
+| Maven | 4.0.0-rc-5 (project Maven Wrapper) |
+| Apache Shiro | 3.0.1 (`shiro-core`, `shiro-web`) |
 | easy4j dependencies | `shiro-extension-spring`, `jwt-issuer-api` (both `3.0.x.20260630-SNAPSHOT`) |
-| JSON | fastjson 2.0.62, jackson-databind 2.17.2 |
-| Other | spring-context / spring-web, commons-lang3, guava, javax.servlet-api 4.0.1 |
+| JSON | fastjson 2.0.62, Jackson BOM 3.2.1 |
+| Other | Spring 7.0.8, Jakarta Servlet 6.1, commons-lang3, guava |
 
 **Version lines**
 

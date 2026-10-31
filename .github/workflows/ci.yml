@@ -43,9 +43,17 @@ jobs:
           dependency_root="${RUNNER_TEMP}/easy4j-dependencies"
           mkdir -p "${dependency_root}"
           for dependency in ${EASY4J_DEPENDENCIES}; do
+            case "${dependency}" in
+              jwt-issuer) pinned_sha="c5873ed3d450f1900dcbf2a4fc2e590077d233f7" ;;
+              shiro-extension) pinned_sha="2080957579216003a10c36044d312745ae587686" ;;
+              *) echo "Unexpected dependency: ${dependency}" >&2; exit 1 ;;
+            esac
             git clone --depth 1 --branch "${EASY4J_BRANCH}" \
               "https://github.com/easy-4-java/${dependency}.git" \
               "${dependency_root}/${dependency}"
+            git -C "${dependency_root}/${dependency}" fetch --depth 1 origin "${pinned_sha}"
+            git -C "${dependency_root}/${dependency}" checkout --detach FETCH_HEAD
+            echo "Pinned ${dependency} at $(git -C "${dependency_root}/${dependency}" rev-parse HEAD)"
             for attempt in 1 2 3; do
               if (cd "${dependency_root}/${dependency}" && \
                 bash ./mvnw -B --no-transfer-progress \
@@ -58,6 +66,9 @@ jobs:
               sleep "$((attempt * 10))"
             done
           done
+
+      - name: Record resolved framework dependency tree
+        run: ./mvnw -B --no-transfer-progress org.apache.maven.plugins:maven-dependency-plugin:3.8.1:tree -Dincludes=org.apache.shiro,org.springframework,jakarta.servlet,javax.servlet
 
       - name: Build and verify with JaCoCo coverage gate
         run: ./mvnw -B --no-transfer-progress clean verify

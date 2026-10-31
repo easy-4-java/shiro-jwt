@@ -69,11 +69,11 @@ Apache Shiro 的 JWT 认证与授权扩展，构建于 `shiro-extension-spring` 
 | 项目 | 版本 |
 | :--- | :--- |
 | JDK | 21+ |
-| Maven | 3.0+（内置 Maven Wrapper 3.5.0） |
-| Apache Shiro | 2.2.1（`shiro-core`、`shiro-web`） |
+| Maven | 4.0.0-rc-5（项目 Maven Wrapper） |
+| Apache Shiro | 3.0.1（`shiro-core`、`shiro-web`） |
 | easy4j 依赖 | `shiro-extension-spring`、`jwt-issuer-api`（均为 `3.0.x.20260630-SNAPSHOT`） |
-| JSON | fastjson 2.0.62、jackson-databind 2.17.2 |
-| 其他 | spring-context / spring-web、commons-lang3、guava、javax.servlet-api 4.0.1 |
+| JSON | fastjson 2.0.62、Jackson BOM 3.2.1 |
+| 其他 | Spring 7.0.8、Jakarta Servlet 6.1、commons-lang3、guava |
 
 **版本线**
 
